@@ -5,15 +5,9 @@ use IEEE.numeric_std.all;
 
 entity jogo_dado is
     Port ( signal clk : in STD_LOGIC;
-           clk1 : inout STD_LOGIC;  --saida de 2MHz
-           clk2 : inout STD_LOGIC;  -- saia de 100Hz
-           clk3 : inout STD_LOGIC;  -- saida de 2Hz 
-           jogador1 : in std_logic;
-           jogador2 : in std_logic;
-           load1: inout std_logic := '1';
-           load2: inout std_logic := '0';
-           chTime : inout std_logic;
-           time1, time2 : buffer std_logic
+           clk1 : inout STD_LOGIC :='0';  --saida de 2MHz
+           clk2 : inout STD_LOGIC :='0';  -- saia de 100Hz
+           clk3 : inout STD_LOGIC :='0'  -- saida de 2Hz 
            );  
            
 end jogo_dado;
@@ -22,7 +16,7 @@ architecture Behavioral of jogo_dado is
     signal contador1 : integer :=0;
     signal contador2 : integer :=0;
     signal contador3 : integer :=0; 
-    constant T : bit := '1';
+    
     
 begin
 -- sinais de clock clk_div
@@ -47,24 +41,6 @@ begin
                         end if;        
                 end if;    
             end if;
-        end if;
-    end process;
-    
-    process(jogador1, jogador2) -- componente num_load
-    begin
-        load1 <= jogador1 and time1;
-        load2 <= jogador2 and time2;
-        
-        chTime <= load1 nor load2;
-        time1 <= not time2;
-        
-    end process;
-    
-    process(chTime) -- componente parte de num_load
-    begin
-        if (chTime'event and chTime = '0') then  
-            time2<= not time2;
-            time1 <=not time1;
         end if;
     end process;
     
