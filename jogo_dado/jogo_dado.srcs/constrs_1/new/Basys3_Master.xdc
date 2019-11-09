@@ -113,13 +113,14 @@ set_property PACKAGE_PIN W5 [get_ports clk]
 	#set_property IOSTANDARD LVCMOS33 [get_ports btnC]
 #set_property PACKAGE_PIN T18 [get_ports btnU]						
 	#set_property IOSTANDARD LVCMOS33 [get_ports btnU]
-#set_property PACKAGE_PIN W19 [get_ports CK]						
-	#set_property IOSTANDARD LVCMOS33 [get_ports CK]
-#set_property PACKAGE_PIN T17 [get_ports RS]						
-	#set_property IOSTANDARD LVCMOS33 [get_ports RS]
+set_property PACKAGE_PIN W19 [get_ports jogador1]						
+    set_property IOSTANDARD LVCMOS33 [get_ports jogador1]
+set_property PACKAGE_PIN T17 [get_ports jogador2]						
+    set_property IOSTANDARD LVCMOS33 [get_ports jogador2]
 #set_property PACKAGE_PIN U17 [get_ports btnD]						
 	#set_property IOSTANDARD LVCMOS33 [get_ports btnD]
  
+
 
 
 ##Pmod Header JA
