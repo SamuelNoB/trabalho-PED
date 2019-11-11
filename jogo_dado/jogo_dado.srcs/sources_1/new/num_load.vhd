@@ -8,25 +8,30 @@ entity num_load is
     jogador2 : in std_logic;
     load1: inout std_logic;
     load2: inout std_logic;
-    chTime : buffer std_logic := '0';
-    time1: buffer std_logic := '1';
-    time2 : buffer std_logic := '0' 
+    CLK : IN std_logic
      );
 end num_load;
 
 architecture Behavioral of num_load is
     --constant T : bit := '1';
+    signal chTime : std_logic;
+    signal time1 : std_logic :='1';
+    signal time2 : std_logic :='0';
 begin
+
     
     process(jogador1, jogador2)  -- componente num_load
     begin
         load1 <= jogador1 and time1;
         load2 <= jogador2 and time2;
         
-        chTime <= load1 or load2;
-        time1 <= not time2;
+        
+        
         
     end process;
+    chtime <= CLK;
+    
+    chTime <= load1 or load2;
     
     process(chTime) -- componente parte de num_load
     begin
