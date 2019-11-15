@@ -7,8 +7,7 @@ entity num_load is
     jogador1 : in std_logic;
     jogador2 : in std_logic;
     load1: inout std_logic;
-    load2: inout std_logic;
-    CLK : IN std_logic
+    load2: inout std_logic
      );
 end num_load;
 
@@ -25,11 +24,7 @@ begin
         load1 <= jogador1 and time1;
         load2 <= jogador2 and time2;
         
-        
-        
-        
     end process;
-    chtime <= CLK;
     
     chTime <= load1 or load2;
     
