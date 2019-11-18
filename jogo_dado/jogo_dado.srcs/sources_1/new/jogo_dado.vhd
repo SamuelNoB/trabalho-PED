@@ -36,31 +36,31 @@ architecture Behavioral of jogo_dado is
         Port (
           clk1 : in std_logic;
           load1, load2 : in std_logic;
-          num1, num2: out std_logic_vector(3 downto 0)
+          num1, num2: out std_logic_vector(2 downto 0)
           
         );
     end component;
     component referee is
        Port (
-       num1, num2 : in STD_LOGIC_VECTOR (3 downto 0);
+       num1, num2 : in STD_LOGIC_VECTOR (2 downto 0);
        clk3, time1 : in std_logic;
-       val1, val2: out STD_LOGIC_VECTOR (3 downto 0)
+       val1, val2: out STD_LOGIC_VECTOR (2 downto 0)
        );
     end component;
     component decoder is
         Port (
                clk2: IN STD_LOGIC ;
-            val1 : in STD_LOGIC_VECTOR (3 downto 0);
-            val2 : in STD_LOGIC_VECTOR (3 downto 0);
+            val1 : in STD_LOGIC_VECTOR (2 downto 0);
+            val2 : in STD_LOGIC_VECTOR (2 downto 0);
             seg : out STD_LOGIC_VECTOR (6 downto 0)
         );
     end component;
 
     signal clk1out , clk2out, clk3out : std_logic; -- saidas de clock. todas correspondem com seus numeros no diagrama
     signal loadout1, loadout2 : std_logic; -- sinais de load do num_load
-    signal val1, val2 : STD_LOGIC_VECTOR (3 downto 0);
+    signal val1, val2 : STD_LOGIC_VECTOR (2 downto 0);
     signal segout: STD_LOGIC_VECTOR (6 downto 0);
-    signal num1, num2 : STD_LOGIC_VECTOR (3 downto 0);
+    signal num1, num2 : STD_LOGIC_VECTOR (2 downto 0);
     signal time1: std_logic;
 
 begin

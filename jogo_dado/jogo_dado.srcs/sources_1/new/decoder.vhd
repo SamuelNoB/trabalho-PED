@@ -25,16 +25,15 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity decoder is
     Port ( clk2: IN STD_LOGIC ;
-            val1 : in STD_LOGIC_VECTOR (3 downto 0);
-            val2 : in STD_LOGIC_VECTOR (3 downto 0);
-            -- V : OUT STD_LOGIC;
-            -- BCDin : inout STD_LOGIC_VECTOR (3 downto 0);
+            val1 : in STD_LOGIC_VECTOR (2 downto 0);
+            val2 : in STD_LOGIC_VECTOR (2 downto 0);
+            
             seg : out STD_LOGIC_VECTOR (6 downto 0) ); 
 end decoder;
 
 architecture Behavioral of decoder is
 
-signal BCDin : STD_LOGIC_VECTOR (3 downto 0);
+signal BCDin : STD_LOGIC_VECTOR (2 downto 0);
 
 begin
 
@@ -47,7 +46,7 @@ begin
                 end if;
         end if;
         
-    --BCDin <=   w0 WHEN "0000" ;
+    --BCDin <=   w0 WHEN "000" ;
         --w1 WHEN OTHERS ;
     end process;
         
@@ -55,18 +54,18 @@ begin
         begin
          
         case BCDin is
-        when "0001" =>
-        seg <= "1001111"; ---1
-        when "0010" =>
-        seg <= "0010010"; ---2
-        when "0011" =>
-        seg <= "0000110"; ---3
-        when "0100" =>
-        seg <= "1001100"; ---4
-        when "0101" =>
-        seg <= "0100100"; ---5
-        when "0110" =>
-        seg <= "0100000"; ---6
+        when "001" =>
+        seg <= "1111110"; ---1
+        when "010" =>
+        seg <= "0110111"; ---2
+        when "011" =>
+        seg <= "0110110"; ---3
+        when "100" =>
+        seg <= "1001001"; ---4
+        when "101" =>
+        seg <= "1001000"; ---5
+        when "110" =>
+        seg <= "0000001"; ---6
         when others =>
         seg <= "1111111"; ---null
         end case;
