@@ -24,46 +24,59 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 
 entity decoder is
-    Port ( w0, w1, clk: IN STD_LOGIC ;
+    Port ( clk2: IN STD_LOGIC ;
+            val1 : in STD_LOGIC_VECTOR (3 downto 0);
+            val2 : in STD_LOGIC_VECTOR (3 downto 0);
             -- V : OUT STD_LOGIC;
-            BCDin : inout STD_LOGIC_VECTOR (3 downto 0);
-            Seven_Segment : out STD_LOGIC_VECTOR (6 downto 0) ); 
+            -- BCDin : inout STD_LOGIC_VECTOR (3 downto 0);
+            seg : out STD_LOGIC_VECTOR (6 downto 0) ); 
 end decoder;
 
 architecture Behavioral of decoder is
 
+signal BCDin : STD_LOGIC_VECTOR (3 downto 0);
 
 begin
-    WITH clk SELECT
-    BCDin <=   "0000" WHEN w0 ;
+
+    process(clk2)
+    begin
+        if clk2 = '0' then
+            BCDin <= val2;
+                else if clk2 = '1' then
+                    BCDin <= val1;
+                end if;
+        end if;
+        
+    --BCDin <=   w0 WHEN "0000" ;
         --w1 WHEN OTHERS ;
+    end process;
         
     process(BCDin)
         begin
          
         case BCDin is
         when "0000" =>
-        Seven_Segment <= "0000001"; ---0
+        seg <= "0000001"; ---0
         when "0001" =>
-        Seven_Segment <= "1001111"; ---1
+        seg <= "1001111"; ---1
         when "0010" =>
-        Seven_Segment <= "0010010"; ---2
+        seg <= "0010010"; ---2
         when "0011" =>
-        Seven_Segment <= "0000110"; ---3
+        seg <= "0000110"; ---3
         when "0100" =>
-        Seven_Segment <= "1001100"; ---4
+        seg <= "1001100"; ---4
         when "0101" =>
-        Seven_Segment <= "0100100"; ---5
+        seg <= "0100100"; ---5
         when "0110" =>
-        Seven_Segment <= "0100000"; ---6
+        seg <= "0100000"; ---6
         when "0111" =>
-        Seven_Segment <= "0001111"; ---7
+        seg <= "0001111"; ---7
         when "1000" =>
-        Seven_Segment <= "0000000"; ---8
+        seg <= "0000000"; ---8
         when "1001" =>
-        Seven_Segment <= "0000100"; ---9
+        seg <= "0000100"; ---9
         when others =>
-        Seven_Segment <= "1111111"; ---null
+        seg <= "1111111"; ---null
         end case;
          
     end process;
