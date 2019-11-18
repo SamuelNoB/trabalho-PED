@@ -55,8 +55,6 @@ begin
         begin
          
         case BCDin is
-        when "0000" =>
-        seg <= "0000001"; ---0
         when "0001" =>
         seg <= "1001111"; ---1
         when "0010" =>
@@ -69,12 +67,6 @@ begin
         seg <= "0100100"; ---5
         when "0110" =>
         seg <= "0100000"; ---6
-        when "0111" =>
-        seg <= "0001111"; ---7
-        when "1000" =>
-        seg <= "0000000"; ---8
-        when "1001" =>
-        seg <= "0000100"; ---9
         when others =>
         seg <= "1111111"; ---null
         end case;
