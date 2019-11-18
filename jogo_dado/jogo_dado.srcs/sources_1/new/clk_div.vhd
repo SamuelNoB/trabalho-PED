@@ -3,16 +3,16 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.numeric_std.all;
 
-entity jogo_dado is
+entity clk_div is
     Port ( signal clk : in STD_LOGIC;
            clk1 : inout STD_LOGIC :='0';  --saida de 2MHz
            clk2 : inout STD_LOGIC :='0';  -- saia de 100Hz
            clk3 : inout STD_LOGIC :='0'  -- saida de 2Hz 
            );  
            
-end jogo_dado;
+end clk_div;
 
-architecture Behavioral of jogo_dado is
+architecture Behavioral of clk_div is
     signal contador1 : integer :=0;
     signal contador2 : integer :=0;
     signal contador3 : integer :=0; 
