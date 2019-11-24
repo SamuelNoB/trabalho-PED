@@ -4,10 +4,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.numeric_std.all;
 
 entity clk_div is
-    Port ( signal clk : in STD_LOGIC;
-           clk1 : inout STD_LOGIC :='0';  --saida de 2MHz
-           clk2 : inout STD_LOGIC :='0';  -- saia de 100Hz
-           clk3 : inout STD_LOGIC :='0'  -- saida de 2Hz 
+    Port ( clk : in STD_LOGIC;
+           clk1 : buffer STD_LOGIC :='0';  --saida de 2MHz
+           clk2 : buffer STD_LOGIC :='0';  -- saia de 100Hz
+           clk3 : buffer STD_LOGIC :='0'  -- saida de 2Hz 
            );  
            
 end clk_div;

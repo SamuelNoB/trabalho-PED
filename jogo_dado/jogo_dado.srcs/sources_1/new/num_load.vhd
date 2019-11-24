@@ -6,9 +6,9 @@ entity num_load is
     Port (
     jogador1 : in std_logic;
     jogador2 : in std_logic;
-    load1: inout std_logic;
-    load2: inout std_logic;
-    time1: out std_logic 
+    load1: buffer std_logic;
+    load2: buffer std_logic;
+    time1: buffer std_logic 
      );
 end num_load;
 
