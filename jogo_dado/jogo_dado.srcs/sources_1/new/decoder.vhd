@@ -27,7 +27,7 @@ entity decoder is
     Port ( clk2: IN STD_LOGIC ;
             val1 : in STD_LOGIC_VECTOR (2 downto 0);
             val2 : in STD_LOGIC_VECTOR (2 downto 0);
-            
+            an : out std_logic_vector(3 downto 0);
             seg : out STD_LOGIC_VECTOR (6 downto 0) ); 
 end decoder;
 
@@ -40,8 +40,10 @@ begin
     process(clk2)
     begin
         if clk2 = '0' then
+            an <= "1110";
             BCDin <= val2;
                 else if clk2 = '1' then
+                    an <= "0111";
                     BCDin <= val1;
                 end if;
         end if;

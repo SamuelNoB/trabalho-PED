@@ -6,7 +6,7 @@ Port (
     clk : in std_logic;    -- signal está errado - corrigido
     jogador1 : in std_logic;
     jogador2 : in std_logic;
-    an0, an1, an2, an3 : out std_logic;  -- Usar vetor
+    an : out std_logic_vector(3 downto 0);  
     seg : out std_logic_vector(6  downto 0)
 );
 end jogo_dado;
@@ -19,9 +19,7 @@ architecture Behavioral of jogo_dado is
            clk1 : buffer STD_LOGIC :='0';  --saida de 2MHz 
            clk2 : buffer STD_LOGIC :='0';  -- saia de 100Hz
            clk3 : buffer STD_LOGIC :='0'  -- saida de 2Hz 
-			-- inout é apenas usado quando o sinal pode agir como entrada ou saída.
-			-- Neste caso é sempre saída, mas como vai ser usada dentro da entidade, deve ser definida como buffer.
-			--corrigido
+			
         );
     end component;
     
@@ -31,11 +29,7 @@ architecture Behavioral of jogo_dado is
             jogador2 : in std_logic;
             load1: buffer std_logic;
             load2: buffer std_logic;
-			-- inout é apenas usado quando o sinal pode agir como entrada ou saída.
-			-- Neste caso é sempre saída, mas como vai ser usada dentro da entidade, deve ser definida como buffer.
             time1 : buffer std_logic
-			-- time 1 também é usado dentro, portanto debe ser buffer.
-			--corrigido
         );
     end component;
 
@@ -59,7 +53,9 @@ architecture Behavioral of jogo_dado is
                clk2: IN STD_LOGIC ;
             val1 : in STD_LOGIC_VECTOR (2 downto 0);
             val2 : in STD_LOGIC_VECTOR (2 downto 0);
-            seg : out STD_LOGIC_VECTOR (6 downto 0)
+            seg : out STD_LOGIC_VECTOR (6 downto 0);
+            an : out std_logic_vector(3 downto 0)
+
         );
     end component;
 
@@ -69,13 +65,11 @@ architecture Behavioral of jogo_dado is
     signal segout: STD_LOGIC_VECTOR (6 downto 0);
     signal num1, num2 : STD_LOGIC_VECTOR (2 downto 0);
     signal time1: std_logic;
+    signal anout : std_logic_vector(3 downto 0);
 
 begin
     
-    an0 <= clk2out;
-    an3 <= not clk2out;
-    an1 <='1';
-    an2 <= '1';
+    
     
     c1 : clk_div port map(
         clk => clk,
@@ -85,36 +79,38 @@ begin
     );
     
     c2 : num_load port map(
-    jogador1 => jogador1,
-    jogador2 => jogador2,
-    load1    =>loadout1,
-    load2    => loadout2,
-    time1    => time1
-    
-    
+        jogador1 => jogador1,
+        jogador2 => jogador2,
+        load1    =>loadout1,
+        load2    => loadout2,
+        time1    => time1
     );
+    
     c3 : num_gen port map(
-    clk1 => clk1out,
-    load1 =>loadout1,
-    load2=>loadout2,
-    num1 => num1,
-    num2 =>num2
+        clk1 => clk1out,
+        load1 =>loadout1,
+        load2=>loadout2,
+        num1 => num1,
+        num2 =>num2
     );
+    
     c4 : referee port map(
-    clk3 => clk3out,
-    num1 => num1,
-    num2 => num2,
-    val2 => val2,
-    val1 => val1,
-    time1=> time1
+        clk3 => clk3out,
+        num1 => num1,
+        num2 => num2,
+        val2 => val2,
+        val1 => val1,
+        time1=> time1
     );
     c5: decoder port map(
         clk2 => clk2out,
         val1 => val1,
         val2 => val2, 
-        seg =>segout
+        seg =>segout,
+        an => anout
     );
     
+    an <= anout;
     seg <= segout;
 
 end Behavioral;
