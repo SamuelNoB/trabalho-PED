@@ -3,10 +3,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity jogo_dado is
 Port ( 
-    signal clk : in std_logic;
+    signal clk : in std_logic;    -- signal está errado
     jogador1 : in std_logic;
     jogador2 : in std_logic;
-    an0, an1, an2, an3 : out std_logic;
+    an0, an1, an2, an3 : out std_logic;  -- Usar vetor
     seg : out std_logic_vector(6  downto 0)
 );
 end jogo_dado;
@@ -16,9 +16,11 @@ architecture Behavioral of jogo_dado is
     component clk_div is
         Port (
             signal clk : in STD_LOGIC;
-           clk1 : inout STD_LOGIC :='0';  --saida de 2MHz
+           clk1 : inout STD_LOGIC :='0';  --saida de 2MHz 
            clk2 : inout STD_LOGIC :='0';  -- saia de 100Hz
            clk3 : inout STD_LOGIC :='0'  -- saida de 2Hz 
+			-- inout é apenas usado quando o sinal pode agir como entrada ou saída.
+			-- Neste caso é sempre saída, mas como vai ser usada dentro da entidade, deve ser definida como buffer.
         );
     end component;
     
@@ -28,10 +30,13 @@ architecture Behavioral of jogo_dado is
             jogador2 : in std_logic;
             load1: inout std_logic;
             load2: inout std_logic;
+			-- inout é apenas usado quando o sinal pode agir como entrada ou saída.
+			-- Neste caso é sempre saída, mas como vai ser usada dentro da entidade, deve ser definida como buffer.
             time1 : out std_logic
+			-- time 1 também é usado dentro, portanto debe ser buffer.
         );
     end component;
-    --descomentar os components e adicionar as portas
+
     component num_gen is
         Port (
           clk1 : in std_logic;
