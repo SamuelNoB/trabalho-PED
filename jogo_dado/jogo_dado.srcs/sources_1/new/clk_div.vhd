@@ -5,9 +5,9 @@ use IEEE.numeric_std.all;
 
 entity clk_div is
     Port ( clk : in STD_LOGIC;
-           clk1 : buffer STD_LOGIC :='0';  --saida de 2MHz
-           clk2 : buffer STD_LOGIC :='0';  -- saia de 100Hz
-           clk3 : buffer STD_LOGIC :='0'  -- saida de 2Hz 
+           clk1 : buffer STD_LOGIC :='1';  --saida de 2MHz
+           clk2 : buffer STD_LOGIC :='1';  -- saia de 100Hz
+           clk3 : buffer STD_LOGIC :='1'  -- saida de 2Hz 
            );  
            
 end clk_div;
@@ -23,26 +23,45 @@ begin
     process(clk, clk1, clk2, clk3)
     begin
         if rising_edge(clk) then
-            if contador1 < 50 then -- contador para sinal de 2MHz
+            if contador1 < 25-1 then -- contador para sinal de 2MHz
                 contador1 <= contador1 + 1;
             else
+                clk1<= not clk1; 
                 contador1<=0;
-                clk1<= not clk1;
-                if contador2< 20000 then -- contador para sinal de 100Hz
-                    contador2<= contador2+1;
-                    else
-                        contador2 <= 0;
-                        clk2 <= not clk2;
-                        if contador3< 50 then -- contador para sinal de 2Hz
-                            contador3 <= contador3 + 1;
-                            else
-                                contador3 <= 0;
-                                clk3 <= not clk3;
-                        end if;        
-                end if;    
             end if;
         end if;
+        
     end process;
     
+    process(clk1)
+    begin
+        if rising_edge(clk1) then
+            if contador2< 10000-1 then -- contador para sinal de 100Hz
+                    contador2<= contador2+1;
+                    
+                    else
+                        clk2 <= not clk2;
+                        contador2 <= 0;
+                        
+            end if;
+        end if;
+        
+    end process;
+    
+    process(clk2)
+    begin
+        if rising_edge(clk2) then
+            if contador3 < 24 then -- contador para sinal de 2Hz
+                contador3 <= contador3 + 1;
+                else
+                    clk3 <= not clk3;
+                    contador3 <= 0;
+                    
+            end if;   
+         end if;
+         
+    end process;
+    
+  
     
 end Behavioral;
