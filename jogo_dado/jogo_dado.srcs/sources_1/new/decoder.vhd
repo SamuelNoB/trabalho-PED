@@ -1,23 +1,3 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 18.11.2019 08:09:32
--- Design Name: 
--- Module Name: decoder - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
-
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -39,17 +19,16 @@ begin
 
     process(clk2)
     begin
-        if clk2 = '0' then
+        case clk2 is
+        when '0' =>
             an <= "1110";
             BCDin <= val2;
-                else if clk2 = '1' then
-                    an <= "0111";
-                    BCDin <= val1;
-                end if;
-        end if;
-        
-    --BCDin <=   w0 WHEN "000" ;
-        --w1 WHEN OTHERS ;
+        when '1'=>
+            an <= "0111";
+            BCDin <= val1;
+        when others =>
+             an <= "1111";
+        end case;
     end process;
         
     process(BCDin)

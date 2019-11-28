@@ -20,7 +20,7 @@ architecture Behavioral of clk_div is
     
 begin
 -- sinais de clock clk_div
-    process(clk, clk1, clk2, clk3)
+    process(clk)
     begin
         if rising_edge(clk) then
             if contador1 < 25-1 then -- contador para sinal de 2MHz
