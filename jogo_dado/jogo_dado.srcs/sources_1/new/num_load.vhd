@@ -22,8 +22,8 @@ begin
     
     process(jogador1, jogador2)  -- componente num_load
     begin
-        load1 <= jogador1 and time1_temp;
-        load2 <= jogador2 and time2;
+        load1 <= jogador1 and time1;
+        load2 <= jogador2 and not time1;
         
     end process;
     

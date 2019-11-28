@@ -12,3 +12,5 @@ jogo_dado/jogo_dado.ip_user_files/
 jogo_dado/jogo_dado.cache/
 
 jogo_dado/jogo_dado.runs/
+
+jogo_dado/jogo_dado.srcs/sim_1/new/jogo_dado_tb.vhd
