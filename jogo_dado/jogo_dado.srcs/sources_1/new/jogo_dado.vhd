@@ -110,6 +110,8 @@ begin
         an => anout
     );
     
+    an(1) <= '1';
+    an(2) <= '1';
     an <= anout;
     seg <= segout;
 

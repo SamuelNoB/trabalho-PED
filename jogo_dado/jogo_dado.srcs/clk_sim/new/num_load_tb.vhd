@@ -59,6 +59,7 @@ begin
         jogador1 <= '0';
 
         wait;
+        
     end process;
 
 
