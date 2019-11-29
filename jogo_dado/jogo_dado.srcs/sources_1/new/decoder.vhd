@@ -17,8 +17,8 @@ signal BCDin : STD_LOGIC_VECTOR (2 downto 0);
 
 begin
 
-an(1) <='1';
-an(2) <='1';
+--an(1) <='1';
+--an(2) <='1';
 an(0) <= clk2;
 an(3) <= not clk2;
 
@@ -26,13 +26,12 @@ BCDin <= val1 when clk2='1'else
         val2 when clk2='0';
 
     process(BCDin)
-        begin
-         
+        begin       
         case BCDin is
         when "001" =>
-        seg <= "1111110"; ---1
+        seg <= "0111111"; ---1
         when "010" =>
-        seg <= "0110111"; ---2
+        seg <= "1110110"; ---2
         when "011" =>
         seg <= "0110110"; ---3
         when "100" =>
