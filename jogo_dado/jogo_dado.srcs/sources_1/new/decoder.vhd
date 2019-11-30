@@ -17,8 +17,7 @@ signal BCDin : STD_LOGIC_VECTOR (2 downto 0);
 
 begin
 
---an(1) <='1';
---an(2) <='1';
+an(2 downto 1) <="11";
 an(0) <= clk2;
 an(3) <= not clk2;
 

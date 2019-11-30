@@ -106,12 +106,11 @@ begin
         clk2 => clk2out,
         val1 => val1,
         val2 => val2, 
-        seg =>segout,
+        seg => segout,
         an => anout
     );
     
-    an(1) <= '1';
-    an(2) <= '1';
+
     an <= anout;
     seg <= segout;
 

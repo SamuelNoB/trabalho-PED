@@ -24,7 +24,7 @@ end component;
     signal an :  std_logic_vector(3 downto 0);
     signal seg :  STD_LOGIC_VECTOR (6 downto 0);
     
-    constant clk_period : time:= 10 ms; -- clk 100 MHz
+    constant clk_period : time:= 10 ms; -- clk 100 Hz
 begin
 
     decodificador: decoder

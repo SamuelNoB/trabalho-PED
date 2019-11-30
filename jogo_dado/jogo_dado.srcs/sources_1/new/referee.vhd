@@ -51,12 +51,12 @@ blink <= time1 and clk3;
 
 process(win1, win2)
 begin
-    if win1 = '0' then
+    if win1 = '1' then
         val1<= "000";
         else
             val1<= A;
     end if;
-    if win2 = '0' then
+    if win2 = '1' then
         val2 <= "000";
         else  
             val2 <= B;    
